@@ -114,8 +114,8 @@
             <div class="row g-4">
                 <!-- Gallery 1 -->
                 <div class="col-lg-4 col-md-6 gallery-box" data-category="lapangan">
-                    <div class="gallery-item shadow">
-                        <img src="img/feature_scenery.png" alt="Scenic View">
+                    <div class="gallery-item shadow" onclick="openLightbox(this)">
+                        <img src="img/turnamen_top.png" alt="Scenic View">
                         <div class="gallery-overlay">
                             <i class="fas fa-search-plus gallery-icon"></i>
                         </div>
@@ -123,8 +123,8 @@
                 </div>
                 <!-- Gallery 2 -->
                 <div class="col-lg-4 col-md-6 gallery-box" data-category="turnamen">
-                    <div class="gallery-item shadow">
-                        <img src="img/blog_tips_swing.png" alt="Golfer Swing">
+                    <div class="gallery-item shadow" onclick="openLightbox(this)">
+                        <img src="img/swing_top.png" alt="Golfer Swing">
                         <div class="gallery-overlay">
                             <i class="fas fa-search-plus gallery-icon"></i>
                         </div>
@@ -132,8 +132,8 @@
                 </div>
                 <!-- Gallery 3 -->
                 <div class="col-lg-4 col-md-6 gallery-box" data-category="lapangan">
-                    <div class="gallery-item shadow">
-                        <img src="img/hero_image.png" alt="Water Hazard">
+                    <div class="gallery-item shadow" onclick="openLightbox(this)">
+                        <img src="img/driver_top.png" alt="Golf Driver">
                         <div class="gallery-overlay">
                             <i class="fas fa-search-plus gallery-icon"></i>
                         </div>
@@ -141,8 +141,8 @@
                 </div>
                 <!-- Gallery 4 -->
                 <div class="col-lg-4 col-md-6 gallery-box" data-category="fasilitas">
-                    <div class="gallery-item shadow">
-                        <img src="img/feature_equipment.png" alt="Golf Ball">
+                    <div class="gallery-item shadow" onclick="openLightbox(this)">
+                        <img src="img/driver_detail.png" alt="Golf Equipment">
                         <div class="gallery-overlay">
                             <i class="fas fa-search-plus gallery-icon"></i>
                         </div>
@@ -150,8 +150,8 @@
                 </div>
                 <!-- Gallery 5 -->
                 <div class="col-lg-4 col-md-6 gallery-box" data-category="lapangan">
-                    <div class="gallery-item shadow">
-                        <img src="img/feature_scenery.png" alt="Sunset Golf">
+                    <div class="gallery-item shadow" onclick="openLightbox(this)">
+                        <img src="img/turnamen_winner.png" alt="Tournament Winner">
                         <div class="gallery-overlay">
                             <i class="fas fa-search-plus gallery-icon"></i>
                         </div>
@@ -159,8 +159,8 @@
                 </div>
                 <!-- Gallery 6 -->
                 <div class="col-lg-4 col-md-6 gallery-box" data-category="fasilitas">
-                    <div class="gallery-item shadow">
-                        <img src="img/about_history.png" alt="Clubhouse">
+                    <div class="gallery-item shadow" onclick="openLightbox(this)">
+                        <img src="img/swing_practice.png" alt="Practice Range">
                         <div class="gallery-overlay">
                             <i class="fas fa-search-plus gallery-icon"></i>
                         </div>
@@ -198,7 +198,7 @@
                 <div class="col-lg-3">
                     <h5>Lokasi</h5>
                     <a href="https://maps.google.com" target="_blank" class="footer-map-btn">
-                        <img src="img/map_placeholder.png" alt="Map">
+                        <img src="img/footer_map.png" alt="Map">
                     </a>
                 </div>
             </div>
@@ -218,6 +218,67 @@
             <i class="fab fa-whatsapp fs-3"></i>
         </a>
     </div>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
+
+    <style>
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            padding-top: 60px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+            animation: fadeIn 0.5s;
+        }
+
+        .lightbox-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 900px;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .lightbox-close:hover,
+        .lightbox-close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+    </style>
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -258,6 +319,22 @@
                 });
             });
         });
+
+        // Lightbox Logic
+        function openLightbox(element) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const img = element.querySelector('img');
+
+            lightbox.style.display = 'block';
+            lightboxImg.src = img.src;
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        }
     </script>
 </body>
 
